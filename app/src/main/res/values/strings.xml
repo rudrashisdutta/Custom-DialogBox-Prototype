@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Layout Trial App</string>
+    <string name="toast_message">%s</string>
+    <string name="custom_dialog_input_hint">%s</string>
+    <string name="custom_dialog_title_text">%s</string>
+    <string name="custom_dialog_negative_text">%s</string>
+    <string name="custom_dialog_positive_text">%s</string>
+</resources>
