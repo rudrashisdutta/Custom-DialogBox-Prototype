@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -39,39 +40,35 @@ public class CustomDialog extends AlertDialog {
     AlertDialog alertDialog;
     Context context;
     EditText input;
+    TextView title;
     CardView cardView;
 
     protected CustomDialog(Context context) {
-        super(context,R.style.AlertDia);
+        super(context);
+        context.setTheme(R.style.AlertDia);
         this.context = context;
         builder = new AlertDialog.Builder(context);
         binding = DialogBinding.inflate(getLayoutInflater());
         alertDialog = builder.create();
         cardView = binding.dialogBox;
         binding.getRoot().removeView(cardView);
-        binding.dialogNegative.setOnClickListener((v) ->{
-            alertDialog.cancel();
-        });
+        binding.dialogNegative.setOnClickListener((v) -> alertDialog.cancel());
         binding.dialogPositive.setVisibility(View.GONE);
         binding.dialogInoutField.setVisibility(View.GONE);
         this.input = binding.dialogInoutField;
+        this.title = binding.dialogTitleField;
     }
 
-    public EditText getInput() {
+    public EditText getInputField() {
         return input;
     }
-    public void setInput(String hint, @Nullable Drawable drawable) {
+    public void setInputField(String hint, @Nullable String preText, @Nullable Drawable drawable) {
         if(input.getVisibility() == View.GONE){
             input.setVisibility(View.VISIBLE);
         }
-        input.setHint(hint);
-        if(drawable != null){
-            input.setBackground(drawable);
+        if(preText!=null){
+            input.setText(preText);
         }
-    }
-    public void setInput(String hint, String preText,@Nullable Drawable drawable) {
-        this.input = binding.dialogInoutField;
-        input.setText(preText);
         input.setHint(hint);
         if(drawable != null){
             input.setBackground(drawable);
@@ -82,17 +79,20 @@ public class CustomDialog extends AlertDialog {
         runnable.run();
     }
 
-    public void setCustomTitle(String title){
-        binding.dialogTitleField.setText(title);
+    public void setTitleField(String titleText){
+        title.setText(titleText);
+    }
+    public TextView getTitleField(){
+        return title;
     }
 
-    public void setPositiveButton(String aContinue, Runnable runnable,@Nullable  String errorMessage) {
+    public void setPositiveButton(String aContinue, Runnable runnable,boolean acceptEmptyInput,@Nullable  String errorMessage) {
         binding.dialogPositive.setText(aContinue);
         alertDialog = builder.create();
         binding.dialogPositive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if((!getInput().getText().toString().isEmpty()) || (input.getVisibility()==View.GONE)) {
+                if((!getInputField().getText().toString().isEmpty() || acceptEmptyInput) || (input.getVisibility()==View.GONE)) {
                     performPositiveButtonClick(runnable);
                 }
                 else{
