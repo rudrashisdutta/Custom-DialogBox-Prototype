@@ -11,14 +11,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:elevation="50dp"
+        android:elevation="100dp"
+        app:cardBackgroundColor="@color/dialog_background"
         app:cardCornerRadius="30dp"
         app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:animateLayoutChanges="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -55,37 +57,35 @@
 
             <Button
                 android:id="@+id/dialogPositive"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
+                android:background="@color/dialog_background"
                 android:fontFamily="@font/armata"
                 android:text="OK"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textStyle="bold"
                 android:theme="@style/AlertDia.dialogButton"
-                app:layout_constraintBottom_toBottomOf="@+id/dialogNegative"
-                app:layout_constraintEnd_toStartOf="@+id/dialogNegative"
-                app:layout_constraintTop_toTopOf="@+id/dialogNegative"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/dialogNegative"
+                app:layout_constraintStart_toStartOf="@+id/dialogNegative" />
 
             <Button
                 android:id="@+id/dialogNegative"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="40dp"
+                android:background="@color/dialog_background"
                 android:fontFamily="@font/armata"
                 android:text="CANCEL"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textStyle="bold"
                 android:theme="@style/AlertDia.dialogButton"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/dialogPositive"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dialogInoutField"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dialogInoutField" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -19,6 +19,7 @@
         <item name="android:bottomRightRadius">30dp</item>
         <item name="android:topLeftRadius">30dp</item>
         <item name="android:topRightRadius">30dp</item>
+        <item name="android:textColor">@color/dialog_text_color</item>
     </style>
     <style name="AlertDia.dialogButton" parent="AlertDia">
         <item name="android:background">@android:color/transparent</item>
