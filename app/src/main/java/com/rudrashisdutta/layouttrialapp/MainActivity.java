@@ -5,37 +5,39 @@ import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.rudrashisdutta.layouttrialapp.databinding.ActivityMainBinding;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
-    AlertDialog alertDialog;
+    XDialog xDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Objects.requireNonNull(getSupportActionBar()).hide();
         Context context = this;
         try {
-            CustomDialog customDialog = new CustomDialog(new ContextThemeWrapper(context, R.style.AlertDia));
-            customDialog.customise(() -> {
-                customDialog.setInputField(String.format(getString(R.string.custom_dialog_input_hint),"Enter Here..."),null,null);
-                customDialog.setTitleField(String.format(getString(R.string.custom_dialog_title_text),"This is a custom title."));
-                customDialog.setNegativeButton(String.format(getString(R.string.custom_dialog_negative_text),"CANCEL"),null);
-                customDialog.setPositiveButton(String.format(getString(R.string.custom_dialog_positive_text), "OK"), (Runnable) () -> {
-                    Toast.makeText(context,String.format(getString(R.string.toast_message),"It fucking works."),Toast.LENGTH_LONG).show();
-                },true,null);
+            xDialog = new XDialog(new ContextThemeWrapper(context, R.style.AlertDia));
+            xDialog.customise(() -> {
+                xDialog.setInputField(String.format(getString(R.string.dialog_input_hint),"Enter Here..."),null,null);
+                xDialog.setTitleField(String.format(getString(R.string.dialog_title),"Please Enter Your Name"));
+                xDialog.setNegativeButton(String.format(getString(R.string.dialog_negative_text),"CANCEL"),null);
+                xDialog.setPositiveButton(String.format(getString(R.string.dialog_positive_text), "PROCEED"), () -> {
+                    Toast.makeText(context,String.format(getString(R.string.toast_message),"Hello "+ xDialog.getInputField().getText()),Toast.LENGTH_LONG).show();
+                },false,String.format(getString(R.string.dialog_error),"Input field is empty!"));
             });
-            alertDialog = customDialog.createCustomDialog();
+            xDialog.createXDialog();
         } catch (Exception e){
             e.printStackTrace();
         }
         binding.button.setOnClickListener(v -> {
             try {
-                alertDialog.show();
+                xDialog.show();
             } catch (Exception e){
                 e.printStackTrace();
             }

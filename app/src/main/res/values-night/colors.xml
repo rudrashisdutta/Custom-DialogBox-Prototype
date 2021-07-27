@@ -10,6 +10,6 @@
 
 
     <!--    DialogBox  -->
-    <color name="dialog_background">#ff000000</color>
+    <color name="dialog_background">#1A1A1A</color>
     <color name="dialog_text_color">#ffffffff</color>
 </resources>

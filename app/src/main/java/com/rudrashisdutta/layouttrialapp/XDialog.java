@@ -13,11 +13,13 @@ import androidx.cardview.widget.CardView;
 
 import com.rudrashisdutta.layouttrialapp.databinding.DialogBinding;
 
+import java.util.Objects;
 
-/*public class CustomDialog extends AlertDialog {
+
+/*public class XDialog extends AlertDialog {
     DialogBinding binding;
     AlertDialog alertDialog;
-    protected CustomDialog(Context context) {
+    protected XDialog(Context context) {
         super(context);
         binding = DialogBinding.inflate(getLayoutInflater());
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -34,7 +36,7 @@ import com.rudrashisdutta.layouttrialapp.databinding.DialogBinding;
     }
 
 }*/
-public class CustomDialog extends AlertDialog {
+public class XDialog extends AlertDialog {
     DialogBinding binding;
     AlertDialog.Builder builder;
     AlertDialog alertDialog;
@@ -43,7 +45,9 @@ public class CustomDialog extends AlertDialog {
     TextView title;
     CardView cardView;
 
-    protected CustomDialog(Context context) {
+    String inputText;
+
+    protected XDialog(Context context) {
         super(context);
         context.setTheme(R.style.AlertDia);
         this.context = context;
@@ -57,17 +61,24 @@ public class CustomDialog extends AlertDialog {
         binding.dialogInoutField.setVisibility(View.GONE);
         this.input = binding.dialogInoutField;
         this.title = binding.dialogTitleField;
+        inputText="";
+        input.setText(inputText);
     }
+    public CardView getRoot(){
+        return cardView;
+    }
+
 
     public EditText getInputField() {
         return input;
     }
-    public void setInputField(String hint, @Nullable String preText, @Nullable Drawable drawable) {
+    public void setInputField(String hint, @Nullable String inputText, @Nullable Drawable drawable) {
         if(input.getVisibility() == View.GONE){
             input.setVisibility(View.VISIBLE);
         }
-        if(preText!=null){
-            input.setText(preText);
+        if(inputText!=null && !Objects.equals(inputText, "")){
+            this.inputText =inputText;
+            input.setText(inputText);
         }
         input.setHint(hint);
         if(drawable != null){
@@ -134,10 +145,16 @@ public class CustomDialog extends AlertDialog {
         }
     }
 
-    public AlertDialog createCustomDialog(){
+    public void createXDialog(){
         alertDialog.setView(cardView);
-        return alertDialog;
     }
 
-
+    @Override
+    public void show() {
+        refresh();
+        alertDialog.show();
+    }
+    private void refresh(){
+        input.setText(inputText);
+    }
 }

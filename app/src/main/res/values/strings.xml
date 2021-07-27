@@ -1,8 +1,17 @@
 <resources>
     <string name="app_name">Layout Trial App</string>
     <string name="toast_message">%s</string>
-    <string name="custom_dialog_input_hint">%s</string>
-    <string name="custom_dialog_title_text">%s</string>
-    <string name="custom_dialog_negative_text">%s</string>
-    <string name="custom_dialog_positive_text">%s</string>
+
+    <!--    Dialog Box -->
+    <string name="dialog_input_hint">%s</string>
+    <string name="dialog_input">%s</string>
+    <string name="dialog_title">%s</string>
+    <string name="dialog_negative_text">%s</string>
+    <string name="dialog_positive_text">%s</string>
+    <string name="dialog_title_default">TITLE</string>
+    <string name="dialog_positive_default">OK</string>
+    <string name="dialog_negative_default">Cancel</string>
+    <string name="dialog_error">%s</string>
+
+
 </resources>
