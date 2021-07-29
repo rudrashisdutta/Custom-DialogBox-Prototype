@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    public Context createCustomContext(){
-        /*Context customContext = new Context() {
+    /*public Context createCustomContext(){
+        Context customContext = new Context() {
             @Override
             public AssetManager getAssets() {
                 return null;
@@ -568,6 +568,6 @@ public class MainActivity extends AppCompatActivity {
             public boolean isDeviceProtectedStorage() {
                 return false;
             }
-        }*/return null;
-    }
+        }
+    }*/
 }
